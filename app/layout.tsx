@@ -16,7 +16,9 @@ export default function RootLayout({
  const [isOpen, setOpen] = useState(false);
  const [width, setWidth] = useState<number>(window.innerWidth);
  function handleWindowSizeChange() {
-  setWidth(window.innerWidth);
+  if (window !== undefined) {
+   setWidth(window.innerWidth);
+  }
  }
  useEffect(() => {
   window.addEventListener('resize', handleWindowSizeChange);
