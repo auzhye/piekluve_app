@@ -14,19 +14,6 @@ export default function RootLayout({
 }>) {
  const {loggedIn} = useUser();
  const [isOpen, setOpen] = useState(false);
- const [width, setWidth] = useState<number>(window.innerWidth);
- function handleWindowSizeChange() {
-  if (window !== undefined) {
-   setWidth(window.innerWidth);
-  }
- }
- useEffect(() => {
-  window.addEventListener('resize', handleWindowSizeChange);
-  return () => {
-      window.removeEventListener('resize', handleWindowSizeChange);
-  }
- }, []);
- const isMobile = width <= 768;
   return (
    <AuthProvider>
     <html lang="en">
