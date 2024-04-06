@@ -8,7 +8,7 @@ import { useAuth } from "@/libs/auth";
 export default function Home() {
   const [rating, setRating] = useState(0);
   const [rating2, setRating2] = useState(0);
-  const [users, setUsers] = useState();
+  const [users, setUsers] = useState<any>();
   const [user, setUser] = useState<Number>();
   const [me, setMe] = useState();
   const {loggedIn} = useUser();
@@ -89,7 +89,7 @@ export default function Home() {
        <div>
         <select onChange={(e) => setUser(new Number(e.currentTarget.value))} name="selector" id="selector">
          
-         {users?.map((e) => (
+         {users?.map((e:any) => (
           <option key={e.id} value={e.id}>{e.username}</option>
           ))}
         </select><br />

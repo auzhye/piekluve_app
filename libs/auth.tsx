@@ -1,5 +1,5 @@
 "use client"
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 interface User {
@@ -16,8 +16,8 @@ interface AuthContextProps {
 }
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
-export const AuthProvider: React.FC = ({ children }:any) => {
-  const [user, setUser] = useState();
+export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
   const pathname = usePathname();
   const router = useRouter();
   console.log(user)
@@ -39,7 +39,7 @@ export const AuthProvider: React.FC = ({ children }:any) => {
         router.push('/login');
        }
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error('Authentication error:', error.response?.data || error.message);
       setUser(null);
       router.push('/login');
